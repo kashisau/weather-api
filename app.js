@@ -10,6 +10,21 @@ var forecast = require('./routes/forecast');
 
 var app = express();
 
+/**
+ * Failover (Checking for DarkSky.net API Key)
+ * 
+ * This is designed to warn the interactive developer of a missing API key if 
+ * s/he has not set up the corresponding environment variable. This would
+ * usually be canvassed in the README but seeing as we're on a tight timeline...
+ */
+
+if (process.env.DARKSKY_API_KEY === undefined) {
+  console.error('\x1b[31m%s\x1b[0m', "Missing DARKSKY_API_KEY environment variable. Exiting.");
+  process.exit();
+} else {
+  console.log('\x1b[32m%s\x1b[0m', "Environment variable DARKSKY_API_KEY found.. Starting server.")
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

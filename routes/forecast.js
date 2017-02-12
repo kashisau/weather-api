@@ -44,7 +44,7 @@ router.get('/:latlong/hourly', function(req, res, next) {
                 long: weatherData.longitude,
                 currently: {
                     time:  weatherData.currently.time,
-                    temperature: temp.f2c(weatherData.currently.temprature)
+                    temperature: temp.f2c(weatherData.currently.temperature)
                 },
                 hourly: weatherData.hourly.data.map(hourDataPoint => {
                     return {
